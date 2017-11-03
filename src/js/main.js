@@ -5,44 +5,194 @@ var addedToBetSlip = [],
     totalAmount,
     currencyCode;
 
-dataLayer.push({
+
+/*examples of data layer pushes for each step*/
+/*add to betslip*/
+/*dataLayer.push({
     'event': 'addToBetslip',
     'ecommerce': {
         'currencyCode': 'ZAR',
         'add': {
             'products': [{
                 'id': '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
+                'category': 'sports',
                 'sport': 'soccer',
                 'league': 'EPL',
                 'betType': '1x2',
-                'gameId': 'V243',
+                'gameId': 'V234',
                 'details': 'stoke v Leicester',
                 'outcome': 'Leicester',
                 'odds': '2.85',
-                'multiBet': false,
-                'singleBet': true,
-                'betAmount': 'null',
-                'totalAmount': 'null'
+                'multiBet': 'false',
+                'singleBet': 'true',
+                'betAmount': 'null'
             }]
         }
     }
-})
+});*/
 
 
-function AddBetToBetslip(id, sport, league, betType, gameId, detail, outcome, odds) {
+/*remove from betslip*/
+/*dataLayer.push({
+    'event': 'removeFromBetslip',
+    'ecommerce': {
+        'currencyCode': 'ZAR',
+        'remove': {
+            'products': [{
+                'id': '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
+                'category': 'sports',
+                'sport': 'soccer',
+                'league': 'EPL',
+                'betType': '1x2',
+                'gameId': 'V234',
+                'details': 'stoke v Leicester',
+                'outcome': 'Leicester',
+                'odds': '2.85',
+                'multiBet': 'false',
+                'singleBet': 'true',
+                'betAmount': 'null'
+            }]
+        }
+    }
+});*/
+
+
+/*remove all from betslip*/
+/*dataLayer.push({
+    'event': 'removeAllFromBetslip',
+    'ecommerce': {
+        'currencyCode': 'ZAR',
+        'remove': {
+            'products': [{
+                'id': '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
+                'category': 'sports',
+                'sport': 'soccer',
+                'league': 'EPL',
+                'betType': '1x2',
+                'gameId': 'V234',
+                'details': 'stoke v Leicester',
+                'outcome': 'Leicester',
+                'odds': '2.85',
+                'multiBet': 'false',
+                'singleBet': 'true',
+                'betAmount': 'null'
+            },
+                {
+                    'id': '55a48ac4-b7ae-e711-80c2-00155dc0af27',
+                    'category': 'sports',
+                    'sport': 'soccer',
+                    'league': 'EPL',
+                    'betType': '1x2',
+                    'gameId': 'V196',
+                    'details': 'Southampton v Burnley',
+                    'outcome': 'Southampton',
+                    'odds': '2.55',
+                    'multiBet': 'false',
+                    'singleBet': 'true',
+                    'betAmount': 'null'
+                }]
+        }
+    }
+});*/
+
+/*placeBet*/
+/*dataLayer.push({
+    'event': 'placeBet',
+    'ecommerce': {
+        'currencyCode': 'ZAR',
+        'checkout': {
+            'products': [{
+                'id': '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
+                'category': 'sports',
+                'sport': 'soccer',
+                'league': 'EPL',
+                'betType': '1x2',
+                'gameId': 'V234',
+                'details': 'stoke v Leicester',
+                'outcome': 'Leicester',
+                'odds': '2.85',
+                'multiBet': 'false',
+                'singleBet': 'true',
+                'betAmount': '5'
+            },
+                {
+                    'id': '55a48ac4-b7ae-e711-80c2-00155dc0af27',
+                    'category': 'sports',
+                    'sport': 'soccer',
+                    'league': 'EPL',
+                    'betType': '1x2',
+                    'gameId': 'V196',
+                    'details': 'Southampton v Burnley',
+                    'outcome': 'Southampton',
+                    'odds': '2.55',
+                    'multiBet': 'false',
+                    'singleBet': 'true',
+                    'betAmount': '5'
+                }]
+        }
+    }
+});*/
+
+/*confirm purchase*/
+/*
+dataLayer.push({
+    'event': 'confirmBet',
+    'ecommerce': {
+        'purchase': {
+            'actionField': {
+                'id': 'transactionID',                         // Transaction ID. Required for purchases and refunds.
+                'total': '10',
+                'coupon': 'SUMMER_SALE'
+            },
+            'products': [{
+                'dimension9' :        '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
+                'dimension10':        'sports',
+                'dimension11':        'soccer',
+                'dimension12':        'EPL',
+                'dimension13':        '1x2',
+                'dimension14':        'V234',
+                'dimension15':        'stoke v Leicester',
+                'dimension16':        'Leicester',
+                'dimension17':        '2.85',
+                'dimension18':        'false',
+                'dimension19':        'true',
+                'dimension20':        '5'
+            },
+                {
+                    'dimension9' :    '55a48ac4-b7ae-e711-80c2-00155dc0af27',
+                    'dimension10':    'sports',
+                    'dimension11':    'soccer',
+                    'dimension12':    'EPL',
+                    'dimension13':    '1x2',
+                    'dimension14':    'V196',
+                    'dimension15':    'Southampton v Burnley',
+                    'dimension16':    'Southampton',
+                    'dimension17':    '2.55',
+                    'dimension18':    'false',
+                    'dimension19':    'true',
+                    'dimension20':    '5'
+                }]
+        }
+    }
+});
+*/
+
+
+function AddBetToBetslip(id, category, sport, league, betType, gameId, detail, outcome, odds) {
     addedToBetSlip.push({
-            'id': id,
-            'sport': sport,
-            'league': league,
-            'betType': betType,
-            'gameId': gameId,
-            'details': detail,
-            'outcome': outcome,
-            'odds': odds,
-            'multiBet': multiBet,
-            'singleBet': singleBet,
-            'betAmount': betAmount,
-            'totalAmount': totalAmount
+            'dimension9' :   id,
+            'dimension10':   category,
+            'dimension11':   sport,
+            'dimension12':   league,
+            'dimension13':   betType,
+            'dimension14':   gameId,
+            'dimension15':   detail,
+            'dimension16':   outcome,
+            'dimension17':   odds,
+            'dimension18':   multiBet,
+            'dimension19':   singleBet,
+            'dimension20':   betAmount,
+            'dimension21':   totalAmount
         });
 
     console.log(`dataLayer.push({
@@ -58,7 +208,8 @@ function AddBetToBetslip(id, sport, league, betType, gameId, detail, outcome, od
     console.log(addedToBetSlip);
 }
 
-function RemoveFromBetSlip(id, sport, league, betType, gameId, detail, outcome, odds){
+function RemoveFromBetSlip(id, category, sport, league, betType, gameId, detail, outcome, odds){
+    console.log('before remove: ',addedToBetSlip);
 
     for(var i = 0; i < addedToBetSlip.length; i++){
         if(addedToBetSlip[i].id === id){
@@ -66,7 +217,7 @@ function RemoveFromBetSlip(id, sport, league, betType, gameId, detail, outcome, 
         }
     }
 
-    console.log(addedToBetSlip);
+    console.log('after remove: ',addedToBetSlip);
 
     console.log(`dataLayer.push({
     'event': 'removeFromBetslip',
@@ -74,22 +225,24 @@ function RemoveFromBetSlip(id, sport, league, betType, gameId, detail, outcome, 
         'currencyCode': currencyCode,
         'remove': {
             products: [{
-                'id': id,
-                'sport': sport,
-                'league': league,
-                'betType': betType,
-                'gameId': gameId,
-                'details': detail,
-                'outcome': outcome,
-                'odds': odds,
-                'multiBet': true/false,
-                'singleBet': true/false,
-                'betAmount': betAmount,
-                'totalAmount': totalAmount
+                'dimension9': id,
+                'dimension10': category,
+                'dimension11': sport,
+                'dimension12': league,
+                'dimension13': betType,
+                'dimension14': gameId,
+                'dimension15': detail,
+                'dimension16': outcome,
+                'dimension17': odds,
+                'dimension18': true/false,
+                'dimension19': true/false,
+                'dimension20': betAmount,
+                'dimension21': totalAmount
             }]
         }
     }
 })`);
+
 
 }
 
@@ -99,8 +252,8 @@ function RemoveAllFromBetslip (){
     console.log(`dataLayer.push({
     event: removeAllFromBetslip,
         ecommerce: {
-        removeAllFromBetslip: {
-            bets: [addedToBetSlip]
+        remove: {
+            products: [addedToBetSlip]
         }
     }
 })`);
@@ -111,13 +264,12 @@ function RemoveAllFromBetslip (){
 }
 
 function PlaceBet(addedToBetSlip){
-    console.log(`
-    dataLayer.push({
+    console.log(`dataLayer.push({
         'event': 'placeBet',
         'ecommerce': {
         'currencyCode': currencyCode,
             'checkout': {
-                'actionField': {'step': 1},
+            'actionField': {'step': 1},
                 'products': addedToBetSlip 
             }
         }
@@ -127,29 +279,22 @@ function PlaceBet(addedToBetSlip){
 
 function ConfirmBet(addedToBetSlip){
     console.log(`
-    dataLayer.push({
+   dataLayer.push({
         'event': 'confirmBet',
         'ecommerce': {
-        'currencyCode': currencyCode,
-            'checkout': {
-                'actionField': {'step': 2},
+            'purchase': {
+                'actionField': {
+                    'step':         '3',
+                    'dimension23': 'T12345',                         // Transaction ID. Required for purchases and refunds.
+                    'dimension21': 'totalAmount',
+                    'dimension22': 'SUMMER_SALE'
+                },
                 'products': addedToBetSlip
             }
         }
     })
     `);
+
+
+
 }
-
-
-
-/*dataLayer.push({
-    'event': 'addToCart',
-    'ecommerce': {
-        'currencyCode': 'EUR',
-        'add': {                                // 'add' actionFieldObject measures.
-            'products': [addedToBetSlip]
-        }
-    }
-});*/
-
-
