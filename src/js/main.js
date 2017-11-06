@@ -15,19 +15,20 @@ var addedToBetSlip = [],
     'ecommerce': {
         'currencyCode': 'ZAR',
         'add': {
+            'actionField': {'step':'1'},
             'products': [{
-                'id': '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
-                'category': 'sports',
-                'sport': 'soccer',
-                'league': 'EPL',
-                'betType': '1x2',
-                'gameId': 'V234',
-                'details': 'stoke v Leicester',
-                'outcome': 'Leicester',
-                'odds': '2.85',
-                'multiBet': 'false',
-                'singleBet': 'true',
-                'betAmount': 'null'
+                    'dimension9' :        '1bb8ca01-b
+                    'dimension10':        'sports',
+                    'dimension11':        'soccer',
+                    'dimension12':        'EPL',
+                    'dimension13':        '1x2',
+                    'dimension14':        'V234',
+                    'dimension15':        'stoke v Le
+                    'dimension16':        'Leicester'
+                    'dimension17':        '2.85',
+                    'dimension18':        'false',
+                    'dimension19':        'true',
+                    'dimension20':        '5'
             }]
         }
     }
@@ -103,34 +104,34 @@ var addedToBetSlip = [],
     'ecommerce': {
         'currencyCode': 'ZAR',
         'checkout': {
-            'actionField': {'step': 1},
+            'actionField': {'step': 2},
             'products': [{
-                'id': '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
-                'category': 'sports',
-                'sport': 'soccer',
-                'league': 'EPL',
-                'betType': '1x2',
-                'gameId': 'V234',
-                'details': 'stoke v Leicester',
-                'outcome': 'Leicester',
-                'odds': '2.85',
-                'multiBet': 'false',
-                'singleBet': 'true',
-                'betAmount': '5'
+                'dimension9' :        '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
+                'dimension10':        'sports',
+                'dimension11':        'soccer',
+                'dimension12':        'EPL',
+                'dimension13':        '1x2',
+                'dimension14':        'V234',
+                'dimension15':        'stoke v Leicester',
+                'dimension16':        'Leicester',
+                'dimension17':        '2.85',
+                'dimension18':        'false',
+                'dimension19':        'true',
+                'dimension20':        '5'
             },
                 {
-                    'id': '55a48ac4-b7ae-e711-80c2-00155dc0af27',
-                    'category': 'sports',
-                    'sport': 'soccer',
-                    'league': 'EPL',
-                    'betType': '1x2',
-                    'gameId': 'V196',
-                    'details': 'Southampton v Burnley',
-                    'outcome': 'Southampton',
-                    'odds': '2.55',
-                    'multiBet': 'false',
-                    'singleBet': 'true',
-                    'betAmount': '5'
+                      'dimension9' :    '55a48ac4-b7ae-e711-80c2-00155dc0af27',
+                      'dimension10':    'sports',
+                      'dimension11':    'soccer',
+                      'dimension12':    'EPL',
+                      'dimension13':    '1x2',
+                      'dimension14':    'V196',
+                      'dimension15':    'Southampton v Burnley',
+                      'dimension16':    'Southampton',
+                      'dimension17':    '2.55',
+                      'dimension18':    'false',
+                      'dimension19':    'true',
+                      'dimension20':    '5'
                 }]
         }
     }
@@ -141,9 +142,10 @@ var addedToBetSlip = [],
 dataLayer.push({
     'event': 'confirmBet',
     'ecommerce': {
+        'currencyCode': 'ZAR',
         'purchase': {
             'actionField': {
-                'step':         '2',
+                'step':         '3',
                 'id':           'T12345',                         // Transaction ID. Required for purchases and refunds.
                 'revenue':      'totalAmount',
                 'freeBet':      'false'
@@ -205,6 +207,7 @@ function AddBetToBetslip(id, category, sport, league, betType, gameId, detail, o
         'ecommerce': {
         'currencyCode': currencyCode,
         'add': {
+        'actionField': {'step':'1'},
             'products': addedToBetSlip
         }
     }
@@ -274,7 +277,7 @@ function PlaceBet(addedToBetSlip){
         'ecommerce': {
         'currencyCode': currencyCode,
             'checkout': {
-            'actionField': {'step': 1},
+            'actionField': {'step': 2},
                 'products': addedToBetSlip 
             }
         }
@@ -289,7 +292,7 @@ function ConfirmBet(addedToBetSlip){
         'ecommerce': {
             'purchase': {
                 'actionField': {
-                    'step':         '2',
+                    'step':         '3',
                     'id':           'T12345',  // we need a transaction id here... think its called the"SKU" number
                     'revenue':      'totalAmount',
                     'freeBet':      freeBet
@@ -300,7 +303,5 @@ function ConfirmBet(addedToBetSlip){
         }
     })
     `);
-
-
 
 }
