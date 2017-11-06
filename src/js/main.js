@@ -3,7 +3,8 @@ var addedToBetSlip = [],
     singleBet,
     betAmount,
     totalAmount,
-    currencyCode;
+    currencyCode,
+    freeBet;
 
 
 /*examples of data layer pushes for each step*/
@@ -101,6 +102,7 @@ var addedToBetSlip = [],
     'ecommerce': {
         'currencyCode': 'ZAR',
         'checkout': {
+            'actionField': {'step': 1},
             'products': [{
                 'id': '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
                 'category': 'sports',
@@ -140,9 +142,11 @@ dataLayer.push({
     'ecommerce': {
         'purchase': {
             'actionField': {
-                'id': 'transactionID',                         // Transaction ID. Required for purchases and refunds.
-                'total': '10',
-                'coupon': 'SUMMER_SALE'
+                'step':         '2',
+                'id':           'T12345',                         // Transaction ID. Required for purchases and refunds.
+                'revenue':      'totalAmount',
+                'freeBet':      'false'
+                'coupon':       'SUMMER_SALE'
             },
             'products': [{
                 'dimension9' :        '1bb8ca01-b7ae-e711-80c2-00155dc0af27',
@@ -212,7 +216,7 @@ function RemoveFromBetSlip(id, category, sport, league, betType, gameId, detail,
     console.log('before remove: ',addedToBetSlip);
 
     for(var i = 0; i < addedToBetSlip.length; i++){
-        if(addedToBetSlip[i].id === id){
+        if(addedToBetSlip[i].dimension9 === id){
             addedToBetSlip.splice(i, 1);
         }
     }
@@ -225,7 +229,7 @@ function RemoveFromBetSlip(id, category, sport, league, betType, gameId, detail,
         'currencyCode': currencyCode,
         'remove': {
             products: [{
-                'dimension9': id,
+                'dimension9' : id,
                 'dimension10': category,
                 'dimension11': sport,
                 'dimension12': league,
@@ -253,7 +257,7 @@ function RemoveAllFromBetslip (){
     event: removeAllFromBetslip,
         ecommerce: {
         remove: {
-            products: [addedToBetSlip]
+            products: addedToBetSlip
         }
     }
 })`);
@@ -284,10 +288,11 @@ function ConfirmBet(addedToBetSlip){
         'ecommerce': {
             'purchase': {
                 'actionField': {
-                    'step':         '3',
-                    'dimension23': 'T12345',                         // Transaction ID. Required for purchases and refunds.
-                    'dimension21': 'totalAmount',
-                    'dimension22': 'SUMMER_SALE'
+                    'step':         '2',
+                    'id':           'T12345',                         // Transaction ID. Required for purchases and refunds.
+                    'revenue':      'totalAmount',
+                    'freeBet':      freeBet
+                    'coupon':       'SUMMER_SALE'
                 },
                 'products': addedToBetSlip
             }
