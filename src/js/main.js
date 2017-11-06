@@ -4,7 +4,8 @@ var addedToBetSlip = [],
     betAmount,
     totalAmount,
     currencyCode,
-    freeBet;
+    freeBet,
+    coupon;
 
 
 /*examples of data layer pushes for each step*/
@@ -289,10 +290,10 @@ function ConfirmBet(addedToBetSlip){
             'purchase': {
                 'actionField': {
                     'step':         '2',
-                    'id':           'T12345',                         // Transaction ID. Required for purchases and refunds.
+                    'id':           'T12345',  // we need a transaction id here... think its called the"SKU" number
                     'revenue':      'totalAmount',
                     'freeBet':      freeBet
-                    'coupon':       'SUMMER_SALE'
+                    'coupon':       coupon
                 },
                 'products': addedToBetSlip
             }
